@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PostPerfection — DCP &amp; IMF Tools</title>
+<style>
+:root { --bg: #0d1117; --card: #161b22; --text: #e6edf3; --muted: #8b949e; --accent: #58a6ff; --border: #30363d; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+header { border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
+header h1 { font-size: 1.6rem; }
+header h1 span { color: var(--accent); }
+header p { color: var(--muted); margin-top: 0.3rem; }
+nav { margin-top: 1rem; }
+nav a { color: var(--accent); text-decoration: none; margin-right: 1.5rem; font-size: 0.9rem; }
+nav a:hover { text-decoration: underline; }
+main { padding: 2rem 0; }
+h2 { font-size: 1.3rem; margin: 2rem 0 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; }
+p, li { color: var(--text); margin-bottom: 0.5rem; }
+ul { padding-left: 1.5rem; }
+pre { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 1rem; overflow-x: auto; margin: 1rem 0; font-size: 0.85rem; }
+code { font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 0.85rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; }
+.card h4 { margin-bottom: 0.3rem; }
+.card h4 a { color: var(--accent); text-decoration: none; }
+.card p { color: var(--muted); font-size: 0.9rem; }
+.badge { display: inline-block; background: #1f6feb33; color: var(--accent); padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.75rem; margin-right: 0.3rem; }
+footer { border-top: 1px solid var(--border); padding: 1.5rem 0; margin-top: 3rem; color: var(--muted); font-size: 0.85rem; }
+footer a { color: var(--accent); text-decoration: none; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+th, td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; }
+th { background: var(--card); }
+</style>
+</head>
+<body>
+
+<header>
+<div class="container">
+<h1><span>Post</span>Perfection</h1>
+<p>Open-source tools for Digital Cinema Package (DCP) and Interoperable Master Format (IMF) workflows</p>
+<nav>
+<a href="#projects">Projects</a>
+<a href="#architecture">Architecture</a>
+<a href="#getting-started">Getting Started</a>
+<a href="#development">Development</a>
+<a href="#ci">CI/CD</a>
+<a href="https://github.com/PostPerfection">GitHub</a>
+</nav>
+</div>
+</header>
+
+<main>
+<div class="container">
+
+<h2 id="projects">Projects</h2>
+<div class="grid">
+<div class="card">
+<h4><a href="https://github.com/PostPerfection/dcpdoctor">dcpdoctor</a></h4>
+<p>DCP validator and compliance checker. Validates SMPTE ST 429, Interop, and ISDCF constraints.</p>
+<span class="badge">C++</span><span class="badge">Rust</span><span class="badge">Python bindings</span>
+</div>
+<div class="card">
+<h4><a href="https://github.com/PostPerfection/dcpwizard">dcpwizard</a></h4>
+<p>DCP creation wizard. Encodes, wraps, and packages complete DCPs from source media.</p>
+<span class="badge">C++</span><span class="badge">Rust</span><span class="badge">Qt GUI</span>
+</div>
+<div class="card">
+<h4><a href="https://github.com/PostPerfection/imfwizard">imfwizard</a></h4>
+<p>IMF package creator. Generates compliant IMP/OPL structures with ST 2067 metadata.</p>
+<span class="badge">Rust</span><span class="badge">Tauri GUI</span>
+</div>
+<div class="card">
+<h4><a href="https://github.com/PostPerfection/postkit">postkit</a></h4>
+<p>Shared Rust library for post-production workflows: encoding, MXF wrapping, hashing, metadata.</p>
+<span class="badge">Rust</span><span class="badge">Library</span>
+</div>
+<div class="card">
+<h4><a href="https://github.com/PostPerfection/dci-ctp">dci-ctp</a></h4>
+<p>DCI Compliance Test Plan suite. Generates synthetic test DCPs and runs validation.</p>
+<span class="badge">Shell</span><span class="badge">Test Suite</span>
+</div>
+<div class="card">
+<h4><a href="https://github.com/PostPerfection/asdcplib-rs">asdcplib-rs</a></h4>
+<p>Rust bindings for asdcplib (AS-DCP / AS-02 MXF file I/O).</p>
+<span class="badge">Rust</span><span class="badge">FFI</span>
+</div>
+</div>
+
+<h2 id="architecture">Architecture</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                      Applications                           │
+│  ┌───────────┐  ┌───────────┐  ┌───────────┐               │
+│  │ dcpwizard │  │ imfwizard │  │ dcpdoctor │               │
+│  │  (C++/Qt) │  │(Rust/Tauri│  │  (C++/CLI)│               │
+│  └─────┬─────┘  └─────┬─────┘  └─────┬─────┘               │
+│        │               │               │                     │
+├────────┼───────────────┼───────────────┼─────────────────────┤
+│        │          Libraries            │                     │
+│        │               │               │                     │
+│  ┌─────▼───────────────▼───────────────▼─────┐               │
+│  │              postkit (Rust)               │               │
+│  │  encode · mxf_wrap · hash · metadata     │               │
+│  │  j2k · loudness · colour · dcdm          │               │
+│  └─────────────────────┬─────────────────────┘               │
+│                        │                                     │
+│  ┌─────────────────────▼─────────────────────┐               │
+│  │           asdcplib-rs (Rust FFI)          │               │
+│  └─────────────────────┬─────────────────────┘               │
+│                        │                                     │
+│  ┌─────────────────────▼─────────────────────┐               │
+│  │      asdcplib (C++) — MXF file I/O        │               │
+│  └───────────────────────────────────────────┘               │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<h3>Prerequisites</h3>
+<ul>
+<li>Rust 1.80+ (for postkit, imfwizard, asdcplib-rs)</li>
+<li>CMake 3.20+ (for dcpdoctor, dcpwizard)</li>
+<li>C++17 compiler (GCC 12+, Clang 15+, MSVC 2022+)</li>
+<li>Optional: Qt 6 (for dcpwizard GUI), Node.js 22 (for imfwizard Tauri GUI)</li>
+</ul>
+
+<h3>Building dcpdoctor</h3>
+<pre><code>git clone --recursive https://github.com/PostPerfection/dcpdoctor.git
+cd dcpdoctor
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j$(nproc)
+./build/dcpdoctor --help
+</code></pre>
+
+<h3>Building dcpwizard</h3>
+<pre><code>git clone --recursive https://github.com/PostPerfection/dcpwizard.git
+cd dcpwizard
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j$(nproc)
+./build/dcpwizard --help
+</code></pre>
+
+<h3>Building imfwizard</h3>
+<pre><code>git clone --recursive https://github.com/PostPerfection/imfwizard.git
+cd imfwizard/rust
+cargo build --release
+./target/release/imfwizard --help
+</code></pre>
+
+<h3>Using postkit as a library</h3>
+<pre><code># In your Cargo.toml
+[dependencies]
+postkit = { git = "https://github.com/PostPerfection/postkit.git" }
+</code></pre>
+
+<h2 id="development">Development</h2>
+
+<h3>Repository Structure</h3>
+<table>
+<tr><th>Repo</th><th>Language</th><th>Build System</th><th>Test Command</th></tr>
+<tr><td>dcpdoctor</td><td>C++ / Rust</td><td>CMake</td><td><code>cd build && ctest</code></td></tr>
+<tr><td>dcpwizard</td><td>C++ / Rust</td><td>CMake</td><td><code>cd build && ctest</code></td></tr>
+<tr><td>imfwizard</td><td>Rust / TypeScript</td><td>Cargo / Vite</td><td><code>cd rust && cargo test</code></td></tr>
+<tr><td>postkit</td><td>Rust</td><td>Cargo</td><td><code>cargo test</code></td></tr>
+<tr><td>dci-ctp</td><td>Shell</td><td>—</td><td><code>./scripts/run_tests.sh</code></td></tr>
+<tr><td>asdcplib-rs</td><td>Rust (FFI)</td><td>Cargo</td><td><code>cargo test</code></td></tr>
+</table>
+
+<h3>Code Quality</h3>
+<ul>
+<li><strong>Rust</strong>: <code>cargo fmt --all && cargo clippy --all-targets --all-features -- -D warnings</code></li>
+<li><strong>C++</strong>: <code>clang-format</code> (see <code>format.sh</code> in each repo)</li>
+<li><strong>Python bindings</strong>: <code>black . && ruff check .</code></li>
+</ul>
+
+<h3>DCP Standards Reference</h3>
+<ul>
+<li>SMPTE ST 429 — D-Cinema Packaging</li>
+<li>SMPTE ST 2067 — Interoperable Master Format</li>
+<li>SMPTE ST 378 / ST 379 — MXF container</li>
+<li>SMPTE ST 422 — JPEG 2000 for D-Cinema</li>
+<li>ISDCF — Inter-Society Digital Cinema Forum naming</li>
+</ul>
+
+<h2 id="ci">CI/CD</h2>
+<p>All repositories use GitHub Actions for continuous integration:</p>
+<ul>
+<li>Cross-platform builds (Linux, macOS, Windows where applicable)</li>
+<li>Automated testing on every push and PR</li>
+<li>Supply chain security via <code>cargo-deny</code> (Rust repos)</li>
+</ul>
+
+<table>
+<tr><th>Repo</th><th>CI Status</th></tr>
+<tr><td>postkit</td><td><img src="https://github.com/PostPerfection/postkit/actions/workflows/ci.yml/badge.svg" alt="CI"></td></tr>
+<tr><td>dcpdoctor</td><td><img src="https://github.com/PostPerfection/dcpdoctor/actions/workflows/ci.yml/badge.svg" alt="CI"></td></tr>
+<tr><td>dcpwizard</td><td><img src="https://github.com/PostPerfection/dcpwizard/actions/workflows/ci.yml/badge.svg" alt="CI"></td></tr>
+<tr><td>imfwizard</td><td><img src="https://github.com/PostPerfection/imfwizard/actions/workflows/ci.yml/badge.svg" alt="CI"></td></tr>
+<tr><td>asdcplib-rs</td><td><img src="https://github.com/PostPerfection/asdcplib-rs/actions/workflows/ci.yml/badge.svg" alt="CI"></td></tr>
+</table>
+
+</div>
+</main>
+
+<footer>
+<div class="container">
+<p>&copy; 2025 PostPerfection. <a href="https://github.com/PostPerfection">GitHub</a></p>
+</div>
+</footer>
+</body>
+</html>
