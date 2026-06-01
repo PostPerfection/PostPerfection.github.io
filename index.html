@@ -66,7 +66,7 @@ th { background: var(--card); }
 <div class="card">
 <h4><a href="https://github.com/PostPerfection/dcpwizard">dcpwizard</a></h4>
 <p>DCP creation wizard. Encodes, wraps, and packages complete DCPs from source media.</p>
-<span class="badge">C++</span><span class="badge">Rust</span><span class="badge">Tauri GUI</span>
+<span class="badge">Rust</span><span class="badge">Tauri GUI</span><span class="badge">CLI</span>
 </div>
 <div class="card">
 <h4><a href="https://github.com/PostPerfection/imfwizard">imfwizard</a></h4>
@@ -134,10 +134,9 @@ cargo build --release
 
 <h3>Building dcpwizard</h3>
 <pre><code>git clone --recursive https://github.com/PostPerfection/dcpwizard.git
-cd dcpwizard
-cmake -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build -j$(nproc)
-./build/dcpwizard --help
+cd dcpwizard/rust
+cargo build --release
+./target/release/dcpwizard --help
 </code></pre>
 
 <h3>Building imfwizard</h3>
@@ -159,7 +158,7 @@ postkit = { git = "https://github.com/PostPerfection/postkit.git" }
 <table>
 <tr><th>Repo</th><th>Language</th><th>Build System</th><th>Test Command</th></tr>
 <tr><td>dcpdoctor</td><td>Rust</td><td>Cargo</td><td><code>cd rust && cargo test --workspace</code></td></tr>
-<tr><td>dcpwizard</td><td>C++ / Rust</td><td>CMake</td><td><code>cd build && ctest</code></td></tr>
+<tr><td>dcpwizard</td><td>Rust / TypeScript</td><td>Cargo / Vite</td><td><code>cd rust && cargo test --workspace</code></td></tr>
 <tr><td>imfwizard</td><td>Rust / TypeScript</td><td>Cargo / Vite</td><td><code>cd rust && cargo test</code></td></tr>
 <tr><td>postkit</td><td>Rust</td><td>Cargo</td><td><code>cargo test</code></td></tr>
 <tr><td>dci-ctp</td><td>Shell</td><td>—</td><td><code>./scripts/run_tests.sh</code></td></tr>
