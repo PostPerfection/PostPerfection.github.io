@@ -61,7 +61,7 @@ th { background: var(--card); }
 <div class="card">
 <h4><a href="https://github.com/PostPerfection/dcpdoctor">dcpdoctor</a></h4>
 <p>DCP validator and compliance checker. Validates SMPTE ST 429, Interop, and ISDCF constraints.</p>
-<span class="badge">C++</span><span class="badge">Rust</span><span class="badge">Python bindings</span>
+<span class="badge">Rust</span><span class="badge">CLI</span><span class="badge">WASM</span>
 </div>
 <div class="card">
 <h4><a href="https://github.com/PostPerfection/dcpwizard">dcpwizard</a></h4>
@@ -95,7 +95,7 @@ th { background: var(--card); }
 │                      Applications                           │
 │  ┌───────────┐  ┌───────────┐  ┌───────────┐               │
 │  │ dcpwizard │  │ imfwizard │  │ dcpdoctor │               │
-│  │(Rust/Tauri│  │(Rust/Tauri│  │(C++/Rust) │               │
+│  │(Rust/Tauri│  │(Rust/Tauri│  │(Rust CLI) │               │
 │  └─────┬─────┘  └─────┬─────┘  └─────┬─────┘               │
 │        │               │               │                     │
 ├────────┼───────────────┼───────────────┼─────────────────────┤
@@ -121,18 +121,15 @@ th { background: var(--card); }
 
 <h3>Prerequisites</h3>
 <ul>
-<li>Rust 1.80+ (for postkit, imfwizard, asdcplib-rs)</li>
-<li>CMake 3.20+ (for dcpdoctor, dcpwizard)</li>
-<li>C++17 compiler (GCC 12+, Clang 15+, MSVC 2022+)</li>
+<li>Rust 1.80+ (for dcpdoctor, postkit, imfwizard, asdcplib-rs)</li>
 <li>Optional: Node.js 22 (for dcpwizard and imfwizard Tauri GUIs)</li>
 </ul>
 
 <h3>Building dcpdoctor</h3>
 <pre><code>git clone --recursive https://github.com/PostPerfection/dcpdoctor.git
-cd dcpdoctor
-cmake -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build -j$(nproc)
-./build/dcpdoctor --help
+cd dcpdoctor/rust
+cargo build --release
+./target/release/dcpdoctor --help
 </code></pre>
 
 <h3>Building dcpwizard</h3>
@@ -161,7 +158,7 @@ postkit = { git = "https://github.com/PostPerfection/postkit.git" }
 <h3>Repository Structure</h3>
 <table>
 <tr><th>Repo</th><th>Language</th><th>Build System</th><th>Test Command</th></tr>
-<tr><td>dcpdoctor</td><td>C++ / Rust</td><td>CMake</td><td><code>cd build && ctest</code></td></tr>
+<tr><td>dcpdoctor</td><td>Rust</td><td>Cargo</td><td><code>cd rust && cargo test --workspace</code></td></tr>
 <tr><td>dcpwizard</td><td>C++ / Rust</td><td>CMake</td><td><code>cd build && ctest</code></td></tr>
 <tr><td>imfwizard</td><td>Rust / TypeScript</td><td>Cargo / Vite</td><td><code>cd rust && cargo test</code></td></tr>
 <tr><td>postkit</td><td>Rust</td><td>Cargo</td><td><code>cargo test</code></td></tr>
@@ -172,8 +169,6 @@ postkit = { git = "https://github.com/PostPerfection/postkit.git" }
 <h3>Code Quality</h3>
 <ul>
 <li><strong>Rust</strong>: <code>cargo fmt --all && cargo clippy --all-targets --all-features -- -D warnings</code></li>
-<li><strong>C++</strong>: <code>clang-format</code> (see <code>format.sh</code> in each repo)</li>
-<li><strong>Python bindings</strong>: <code>black . && ruff check .</code></li>
 </ul>
 
 <h3>DCP Standards Reference</h3>
