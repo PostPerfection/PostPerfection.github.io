@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PostPerfection — DCP &amp; IMF Tools</title>
+<title>PostPerfection: DCP &amp; IMF Tools</title>
 <style>
 :root { --bg: #0d1117; --card: #161b22; --text: #e6edf3; --muted: #8b949e; --accent: #58a6ff; --border: #30363d; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -60,17 +60,17 @@ th { background: var(--card); }
 <div class="grid">
 <div class="card">
 <h4><a href="https://github.com/PostPerfection/dcpdoctor">dcpdoctor</a></h4>
-<p>DCP validator and compliance checker with CLI and Tauri desktop GUI. Validates SMPTE ST 429, Interop, and ISDCF constraints.</p>
+<p>DCP and IMF validator with package-aware routing, XML schema checks, CLI, and Tauri desktop GUI.</p>
 <span class="badge">Rust</span><span class="badge">Tauri GUI</span><span class="badge">WASM</span>
 </div>
 <div class="card">
 <h4><a href="https://github.com/PostPerfection/dcpwizard">dcpwizard</a></h4>
-<p>DCP creation wizard. Encodes, wraps, and packages complete DCPs from source media.</p>
+<p>DCP creator with OpenJPEG encoding and consistent SMPTE or Interop package identities.</p>
 <span class="badge">Rust</span><span class="badge">Tauri GUI</span><span class="badge">CLI</span>
 </div>
 <div class="card">
 <h4><a href="https://github.com/PostPerfection/imfwizard">imfwizard</a></h4>
-<p>IMF package creator. Generates compliant IMP/OPL structures with ST 2067 metadata.</p>
+<p>App 2E package creator with complete asset manifests, base64 hashes, and picture constraint checks.</p>
 <span class="badge">Rust</span><span class="badge">Tauri GUI</span>
 </div>
 <div class="card">
@@ -80,12 +80,12 @@ th { background: var(--card); }
 </div>
 <div class="card">
 <h4><a href="https://github.com/PostPerfection/dci-ctp">dci-ctp</a></h4>
-<p>DCI Compliance Test Plan suite. Generates synthetic test DCPs and runs validation.</p>
+<p>DCI Compliance Test Plan suite with generated fixtures and automated category CI.</p>
 <span class="badge">Shell</span><span class="badge">Test Suite</span>
 </div>
 <div class="card">
 <h4><a href="https://github.com/PostPerfection/asdcplib-rs">asdcplib-rs</a></h4>
-<p>Rust bindings for asdcplib (AS-DCP / AS-02 MXF file I/O).</p>
+<p>Rust bindings for asdcplib with real MXF writer and reader integration tests.</p>
 <span class="badge">Rust</span><span class="badge">FFI</span>
 </div>
 </div>
@@ -112,7 +112,7 @@ th { background: var(--card); }
 │  └─────────────────────┬─────────────────────┘               │
 │                        │                                     │
 │  ┌─────────────────────▼─────────────────────┐               │
-│  │      asdcplib (C++) — MXF file I/O        │               │
+│  │      asdcplib (C++), MXF file I/O        │               │
 │  └───────────────────────────────────────────┘               │
 └─────────────────────────────────────────────────────────────┘
 </code></pre>
@@ -122,7 +122,7 @@ th { background: var(--card); }
 <h3>Prerequisites</h3>
 <ul>
 <li>Rust 1.80+ (for dcpdoctor, postkit, imfwizard, asdcplib-rs)</li>
-<li>Optional: Node.js 22 (for dcpwizard and imfwizard Tauri GUIs)</li>
+<li>Optional: Node.js 24 and pnpm 11 (for Tauri GUIs)</li>
 </ul>
 
 <h3>Building dcpdoctor</h3>
@@ -161,22 +161,23 @@ postkit = { git = "https://github.com/PostPerfection/postkit.git" }
 <tr><td>dcpwizard</td><td>Rust / TypeScript</td><td>Cargo / Vite</td><td><code>cd rust && cargo test --workspace</code></td></tr>
 <tr><td>imfwizard</td><td>Rust / TypeScript</td><td>Cargo / Vite</td><td><code>cd rust && cargo test</code></td></tr>
 <tr><td>postkit</td><td>Rust</td><td>Cargo</td><td><code>cargo test</code></td></tr>
-<tr><td>dci-ctp</td><td>Shell</td><td>—</td><td><code>./scripts/run_tests.sh</code></td></tr>
+<tr><td>dci-ctp</td><td>Shell</td><td>scripts</td><td><code>./scripts/run_tests.sh</code></td></tr>
 <tr><td>asdcplib-rs</td><td>Rust (FFI)</td><td>Cargo</td><td><code>cargo test</code></td></tr>
 </table>
 
 <h3>Code Quality</h3>
 <ul>
-<li><strong>Rust</strong>: <code>cargo fmt --all && cargo clippy --all-targets --all-features -- -D warnings</code></li>
+<li><strong>Rust</strong>: <code>cargo fmt --all &amp;&amp; cargo clippy --all-targets --all-features -- -D warnings</code></li>
+<li><strong>Frontend</strong>: <code>cd gui &amp;&amp; pnpm install --frozen-lockfile &amp;&amp; pnpm build</code></li>
 </ul>
 
 <h3>DCP Standards Reference</h3>
 <ul>
-<li>SMPTE ST 429 — D-Cinema Packaging</li>
-<li>SMPTE ST 2067 — Interoperable Master Format</li>
-<li>SMPTE ST 378 / ST 379 — MXF container</li>
-<li>SMPTE ST 422 — JPEG 2000 for D-Cinema</li>
-<li>ISDCF — Inter-Society Digital Cinema Forum naming</li>
+<li>SMPTE ST 429, D-Cinema Packaging</li>
+<li>SMPTE ST 2067, Interoperable Master Format</li>
+<li>SMPTE ST 378 / ST 379, MXF container</li>
+<li>SMPTE ST 422, JPEG 2000 for D-Cinema</li>
+<li>ISDCF, Inter-Society Digital Cinema Forum naming</li>
 </ul>
 
 <h2 id="ci">CI/CD</h2>
@@ -194,6 +195,7 @@ postkit = { git = "https://github.com/PostPerfection/postkit.git" }
 <tr><td>dcpwizard</td><td><img src="https://github.com/PostPerfection/dcpwizard/actions/workflows/ci.yml/badge.svg" alt="CI"></td></tr>
 <tr><td>imfwizard</td><td><img src="https://github.com/PostPerfection/imfwizard/actions/workflows/ci.yml/badge.svg" alt="CI"></td></tr>
 <tr><td>asdcplib-rs</td><td><img src="https://github.com/PostPerfection/asdcplib-rs/actions/workflows/ci.yml/badge.svg" alt="CI"></td></tr>
+<tr><td>dci-ctp</td><td><img src="https://github.com/PostPerfection/dci-ctp/actions/workflows/ci.yml/badge.svg" alt="CI"></td></tr>
 </table>
 
 </div>
@@ -201,7 +203,7 @@ postkit = { git = "https://github.com/PostPerfection/postkit.git" }
 
 <footer>
 <div class="container">
-<p>&copy; 2025 PostPerfection. <a href="https://github.com/PostPerfection">GitHub</a></p>
+<p>&copy; 2026 PostPerfection. <a href="https://github.com/PostPerfection">GitHub</a></p>
 </div>
 </footer>
 </body>
