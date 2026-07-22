@@ -3,207 +3,196 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PostPerfection: DCP &amp; IMF Tools</title>
+<title>PostPerfection: Free DCP &amp; IMF Tools</title>
+<meta name="description" content="Free, open-source desktop apps to make, check, and deliver DCPs and IMF packages. Windows, macOS, and Linux.">
 <style>
-:root { --bg: #0d1117; --card: #161b22; --text: #e6edf3; --muted: #8b949e; --accent: #58a6ff; --border: #30363d; }
+:root {
+  --bg: #0d0d0d; --card: #16161d; --card-hover: #1b1b24; --text: #e8e8ee; --muted: #9a9aa8;
+  --accent: #22d3ee; --accent2: #a78bfa; --border: #2a2a35; --btn: #0891b2; --btn-hover: #0ea5c9;
+}
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-header { border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
-header h1 { font-size: 1.6rem; }
-header h1 span { color: var(--accent); }
-header p { color: var(--muted); margin-top: 0.3rem; }
-nav { margin-top: 1rem; }
-nav a { color: var(--accent); text-decoration: none; margin-right: 1.5rem; font-size: 0.9rem; }
-nav a:hover { text-decoration: underline; }
-main { padding: 2rem 0; }
-h2 { font-size: 1.3rem; margin: 2rem 0 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; }
-p, li { color: var(--text); margin-bottom: 0.5rem; }
-ul { padding-left: 1.5rem; }
-pre { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 1rem; overflow-x: auto; margin: 1rem 0; font-size: 0.85rem; }
-code { font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 0.85rem; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0; }
-.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; }
-.card h4 { margin-bottom: 0.3rem; }
-.card h4 a { color: var(--accent); text-decoration: none; }
-.card p { color: var(--muted); font-size: 0.9rem; }
-.badge { display: inline-block; background: #1f6feb33; color: var(--accent); padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.75rem; margin-right: 0.3rem; }
-footer { border-top: 1px solid var(--border); padding: 1.5rem 0; margin-top: 3rem; color: var(--muted); font-size: 0.85rem; }
+.container { max-width: 1060px; margin: 0 auto; padding: 0 1.5rem; }
+header { border-bottom: 1px solid var(--border); padding: 1.1rem 0; position: sticky; top: 0; background: rgba(13,13,13,0.92); backdrop-filter: blur(8px); z-index: 10; }
+.headrow { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem; }
+.logo { font-size: 1.25rem; font-weight: 700; }
+.logo span { background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+nav a { color: var(--muted); text-decoration: none; margin-left: 1.3rem; font-size: 0.92rem; }
+nav a:hover { color: var(--text); }
+.hero { text-align: center; padding: 4.5rem 0 3.5rem; }
+.hero h1 { font-size: clamp(1.9rem, 4.5vw, 3rem); line-height: 1.2; max-width: 21ch; margin: 0 auto; }
+.hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero p { color: var(--muted); font-size: 1.12rem; max-width: 52ch; margin: 1.2rem auto 0; }
+.hero .cta { margin-top: 2rem; display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+.btn { display: inline-block; background: var(--btn); color: #fff; text-decoration: none; padding: 0.65rem 1.3rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; }
+.btn:hover { background: var(--btn-hover); }
+.btn.ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+.platforms { color: var(--muted); font-size: 0.88rem; margin-top: 1rem; }
+h2 { font-size: 1.5rem; margin: 0 0 0.4rem; }
+.section { padding: 2.6rem 0; }
+.section > .container > p.lead { color: var(--muted); margin-bottom: 1.6rem; max-width: 62ch; }
+.apps { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.1rem; }
+.app { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; }
+.app:hover { background: var(--card-hover); }
+.app h3 { font-size: 1.25rem; margin-bottom: 0.15rem; }
+.app .job { color: var(--accent); font-size: 0.92rem; font-weight: 600; margin-bottom: 0.8rem; }
+.app ul { list-style: none; margin-bottom: 1.2rem; }
+.app li { color: var(--muted); font-size: 0.93rem; padding-left: 1.2rem; position: relative; margin-bottom: 0.35rem; }
+.app li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); }
+.app .actions { margin-top: auto; display: flex; gap: 0.7rem; align-items: center; flex-wrap: wrap; }
+.app .actions a.more { color: var(--muted); font-size: 0.92rem; text-decoration: none; }
+.app .actions a.more:hover { color: var(--accent); }
+.strip { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.6rem; display: flex; gap: 1.2rem; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.strip p { color: var(--muted); max-width: 58ch; }
+.strip strong { color: var(--text); }
+.free { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.1rem; }
+.free div { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem 1.4rem; }
+.free h4 { margin-bottom: 0.3rem; font-size: 1rem; }
+.free p { color: var(--muted); font-size: 0.92rem; }
+.dev p { color: var(--muted); max-width: 70ch; margin-bottom: 0.8rem; }
+.dev a { color: var(--accent); text-decoration: none; }
+.dev a:hover { text-decoration: underline; }
+footer { border-top: 1px solid var(--border); padding: 1.6rem 0 2.2rem; margin-top: 2.5rem; color: var(--muted); font-size: 0.88rem; }
 footer a { color: var(--accent); text-decoration: none; }
-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
-th, td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; }
-th { background: var(--card); }
 </style>
 </head>
 <body>
 
 <header>
-<div class="container">
-<h1><span>Post</span>Perfection</h1>
-<p>Open-source tools for Digital Cinema Package (DCP) and Interoperable Master Format (IMF) workflows</p>
+<div class="container headrow">
+<div class="logo"><span>Post</span>Perfection</div>
 <nav>
-<a href="#projects">Projects</a>
-<a href="#architecture">Architecture</a>
-<a href="#getting-started">Getting Started</a>
-<a href="#development">Development</a>
-<a href="#ci">CI/CD</a>
+<a href="#apps">Apps</a>
+<a href="#online-check">Online check</a>
+<a href="#developers">Developers</a>
 <a href="https://github.com/PostPerfection">GitHub</a>
 </nav>
 </div>
 </header>
 
 <main>
+
+<section class="hero">
 <div class="container">
+<h1>Make, check, and deliver <em>DCPs and IMF packages</em></h1>
+<p>Free, open-source desktop apps for cinema and streaming deliveries. The kind of tools that usually cost thousands, with no dongles, no subscriptions, and no watermarks.</p>
+<div class="cta">
+<a class="btn" href="#apps">Download the apps</a>
+<a class="btn ghost" href="https://postperfection.github.io/dcpdoctor/validate/">Check a DCP in your browser</a>
+</div>
+<p class="platforms">Windows &middot; macOS &middot; Linux</p>
+</div>
+</section>
 
-<h2 id="projects">Projects</h2>
-<div class="grid">
-<div class="card">
-<h4><a href="https://github.com/PostPerfection/dcpdoctor">dcpdoctor</a></h4>
-<p>DCP and IMF validator with package-aware routing, XML schema checks, CLI, and Tauri desktop GUI.</p>
-<span class="badge">Rust</span><span class="badge">Tauri GUI</span><span class="badge">WASM</span>
-</div>
-<div class="card">
-<h4><a href="https://github.com/PostPerfection/dcpwizard">dcpwizard</a></h4>
-<p>DCP creator with OpenJPEG encoding and consistent SMPTE or Interop package identities.</p>
-<span class="badge">Rust</span><span class="badge">Tauri GUI</span><span class="badge">CLI</span>
-</div>
-<div class="card">
-<h4><a href="https://github.com/PostPerfection/imfwizard">imfwizard</a></h4>
-<p>App 2E package creator with complete asset manifests, base64 hashes, and picture constraint checks.</p>
-<span class="badge">Rust</span><span class="badge">Tauri GUI</span>
-</div>
-<div class="card">
-<h4><a href="https://github.com/PostPerfection/postkit">postkit</a></h4>
-<p>Shared Rust library for post-production workflows: encoding, MXF wrapping, hashing, metadata.</p>
-<span class="badge">Rust</span><span class="badge">Library</span>
-</div>
-<div class="card">
-<h4><a href="https://github.com/PostPerfection/dci-ctp">dci-ctp</a></h4>
-<p>DCI Compliance Test Plan suite with generated fixtures and automated category CI.</p>
-<span class="badge">Shell</span><span class="badge">Test Suite</span>
-</div>
-<div class="card">
-<h4><a href="https://github.com/PostPerfection/asdcplib-rs">asdcplib-rs</a></h4>
-<p>Rust bindings for asdcplib with real MXF writer and reader integration tests.</p>
-<span class="badge">Rust</span><span class="badge">FFI</span>
-</div>
-</div>
+<section class="section" id="apps">
+<div class="container">
+<h2>The apps</h2>
+<p class="lead">Each one installs like any normal desktop app. Command-line versions are on the same download pages if you script your deliveries.</p>
+<div class="apps">
 
-<h2 id="architecture">Architecture</h2>
-<pre><code>┌─────────────────────────────────────────────────────────────┐
-│                        Applications                         │
-│  ┌───────────┐  ┌───────────┐  ┌───────────┐                │
-│  │ dcpwizard │  │ imfwizard │  │ dcpdoctor │                │
-│  │ Rust/Tauri│  │ Rust/Tauri│  │ Rust/Tauri│                │
-│  └─────┬─────┘  └─────┬─────┘  └─────┬─────┘                │
-│        │              │              │                      │
-├────────┼──────────────┼─ Libraries ──┼──────────────────────┤
-│        │              │              │                      │
-│  ┌─────▼──────────────▼──────────────▼───────────────────┐  │
-│  │                     postkit (Rust)                    │  │
-│  │       encode · mxf_wrap · hash · metadata · j2k       │  │
-│  │          loudness · colour · dcdm · packaging         │  │
-│  └───────────────────────────┬───────────────────────────┘  │
-│                              │                              │
-│  ┌───────────────────────────▼───────────────────────────┐  │
-│  │                 asdcplib-rs (Rust FFI)                │  │
-│  └───────────────────────────┬───────────────────────────┘  │
-│                              │                              │
-│  ┌───────────────────────────▼───────────────────────────┐  │
-│  │             asdcplib (C++) · MXF file I/O             │  │
-│  └───────────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────┘
-</code></pre>
-
-<h2 id="getting-started">Getting Started</h2>
-
-<h3>Prerequisites</h3>
+<div class="app">
+<h3>DCP Wizard</h3>
+<div class="job">Make DCPs</div>
 <ul>
-<li>Rust 1.80+ (for dcpdoctor, postkit, imfwizard, asdcplib-rs)</li>
-<li>Optional: Node.js 24 and pnpm 11 (for Tauri GUIs)</li>
+<li>Start from ProRes, H.264/H.265, DNxHR, or DPX/TIFF/EXR sequences</li>
+<li>SMPTE and Interop, 2K and 4K, up to 120 fps</li>
+<li>Subtitles from SRT, packaged or burned in</li>
+<li>Encryption with KDMs, including batch KDMs</li>
+<li>Built-in quality check before anything ships</li>
+<li>Verified copies straight to a cinema drive</li>
 </ul>
+<div class="actions">
+<a class="btn" href="https://github.com/PostPerfection/dcpwizard/releases/latest">Download</a>
+<a class="more" href="https://postperfection.github.io/dcpwizard/">Learn more →</a>
+</div>
+</div>
 
-<h3>Building dcpdoctor</h3>
-<pre><code>git clone --recursive https://github.com/PostPerfection/dcpdoctor.git
-cd dcpdoctor/rust
-cargo build --release
-./target/release/dcpdoctor --help
-</code></pre>
-
-<h3>Building dcpwizard</h3>
-<pre><code>git clone --recursive https://github.com/PostPerfection/dcpwizard.git
-cd dcpwizard/rust
-cargo build --release
-./target/release/dcpwizard --help
-</code></pre>
-
-<h3>Building imfwizard</h3>
-<pre><code>git clone --recursive https://github.com/PostPerfection/imfwizard.git
-cd imfwizard/rust
-cargo build --release
-./target/release/imfwizard --help
-</code></pre>
-
-<h3>Using postkit as a library</h3>
-<pre><code># In your Cargo.toml
-[dependencies]
-postkit = { git = "https://github.com/PostPerfection/postkit.git" }
-</code></pre>
-
-<h2 id="development">Development</h2>
-
-<h3>Repository Structure</h3>
-<table>
-<tr><th>Repo</th><th>Language</th><th>Build System</th><th>Test Command</th></tr>
-<tr><td>dcpdoctor</td><td>Rust</td><td>Cargo</td><td><code>cd rust && cargo test --workspace</code></td></tr>
-<tr><td>dcpwizard</td><td>Rust / TypeScript</td><td>Cargo / Vite</td><td><code>cd rust && cargo test --workspace</code></td></tr>
-<tr><td>imfwizard</td><td>Rust / TypeScript</td><td>Cargo / Vite</td><td><code>cd rust && cargo test</code></td></tr>
-<tr><td>postkit</td><td>Rust</td><td>Cargo</td><td><code>cargo test</code></td></tr>
-<tr><td>dci-ctp</td><td>Shell</td><td>scripts</td><td><code>./scripts/run_tests.sh</code></td></tr>
-<tr><td>asdcplib-rs</td><td>Rust (FFI)</td><td>Cargo</td><td><code>cargo test</code></td></tr>
-</table>
-
-<h3>Code Quality</h3>
+<div class="app">
+<h3>DCP Doctor</h3>
+<div class="job">Check DCPs and IMF packages</div>
 <ul>
-<li><strong>Rust</strong>: <code>cargo fmt --all &amp;&amp; cargo clippy --all-targets --all-features -- -D warnings</code></li>
-<li><strong>Frontend</strong>: <code>cd gui &amp;&amp; pnpm install --frozen-lockfile &amp;&amp; pnpm build</code></li>
+<li>Catch broken packages before the screening</li>
+<li>Structure, hashes, subtitles, audio, HDR, encryption</li>
+<li>Fixes common problems automatically</li>
+<li>Compatibility checks for Dolby, Barco, Christie, GDC, IMAX servers</li>
+<li>QC reports you can hand to a client</li>
+<li>Watch a folder and check every new delivery</li>
 </ul>
+<div class="actions">
+<a class="btn" href="https://github.com/PostPerfection/dcpdoctor/releases/latest">Download</a>
+<a class="more" href="https://postperfection.github.io/dcpdoctor/">Learn more →</a>
+</div>
+</div>
 
-<h3>DCP Standards Reference</h3>
+<div class="app">
+<h3>IMF Wizard</h3>
+<div class="job">Deliver to streamers</div>
 <ul>
-<li>SMPTE ST 429, D-Cinema Packaging</li>
-<li>SMPTE ST 2067, Interoperable Master Format</li>
-<li>SMPTE ST 378 / ST 379, MXF container</li>
-<li>SMPTE ST 422, JPEG 2000 for D-Cinema</li>
-<li>ISDCF, Inter-Society Digital Cinema Forum naming</li>
+<li>Build IMF packages for Netflix, Disney+, Amazon, and Apple deliveries</li>
+<li>Delivery presets per platform</li>
+<li>Dolby Vision, HDR10+, and Dolby Atmos support</li>
+<li>Audio description tracks with automatic ducking</li>
+<li>Supplemental packages for partial re-deliveries</li>
+<li>Convert an IMF package to a DCP</li>
 </ul>
-
-<h2 id="ci">CI/CD</h2>
-<p>All repositories use GitHub Actions for continuous integration:</p>
-<ul>
-<li>Cross-platform builds (Linux, macOS, Windows where applicable)</li>
-<li>Automated testing on every push and PR</li>
-<li>Supply chain security via <code>cargo-deny</code> (Rust repos)</li>
-</ul>
-
-<table>
-<tr><th>Repo</th><th>CI Status</th></tr>
-<tr><td>postkit</td><td><img src="https://github.com/PostPerfection/postkit/actions/workflows/ci.yml/badge.svg" alt="CI"></td></tr>
-<tr><td>dcpdoctor</td><td><img src="https://github.com/PostPerfection/dcpdoctor/actions/workflows/ci.yml/badge.svg" alt="CI"></td></tr>
-<tr><td>dcpwizard</td><td><img src="https://github.com/PostPerfection/dcpwizard/actions/workflows/ci.yml/badge.svg" alt="CI"></td></tr>
-<tr><td>imfwizard</td><td><img src="https://github.com/PostPerfection/imfwizard/actions/workflows/ci.yml/badge.svg" alt="CI"></td></tr>
-<tr><td>asdcplib-rs</td><td><img src="https://github.com/PostPerfection/asdcplib-rs/actions/workflows/ci.yml/badge.svg" alt="CI"></td></tr>
-<tr><td>dci-ctp</td><td><img src="https://github.com/PostPerfection/dci-ctp/actions/workflows/ci.yml/badge.svg" alt="CI"></td></tr>
-</table>
+<div class="actions">
+<a class="btn" href="https://github.com/PostPerfection/imfwizard/releases/latest">Download</a>
+<a class="more" href="https://postperfection.github.io/imfwizard/">Learn more →</a>
+</div>
+</div>
 
 </div>
+</div>
+</section>
+
+<section class="section" id="online-check">
+<div class="container">
+<div class="strip">
+<div>
+<h2>Check a DCP without installing anything</h2>
+<p>Point the online checker at a DCP and get an instant report. It runs <strong>entirely in your browser</strong>: your files are never uploaded anywhere.</p>
+</div>
+<a class="btn" href="https://postperfection.github.io/dcpdoctor/validate/">Open the online checker</a>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<h2>Free means free</h2>
+<div class="free">
+<div>
+<h4>No license fees</h4>
+<p>Commercial DCP and IMF tools run to thousands of euros per seat. These apps cost nothing, for any use, commercial included.</p>
+</div>
+<div>
+<h4>No lock-in</h4>
+<p>Open source under the GPL. The apps keep working even if you never pay anyone anything, and the source is public if you ever need it.</p>
+</div>
+<div>
+<h4>Real standards</h4>
+<p>Packages follow the SMPTE and Interop standards cinemas and streamers actually require, and every package is verified before it goes out.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section dev" id="developers">
+<div class="container">
+<h2>For developers</h2>
+<p>The apps are built in Rust on shared open-source libraries: <a href="https://github.com/PostPerfection/postkit">postkit</a> (encoding, packaging, QC building blocks), <a href="https://github.com/PostPerfection/asdcplib-rs">asdcplib-rs</a> (safe Rust bindings for AS-DCP/AS-02 MXF), and <a href="https://github.com/PostPerfection/dci-ctp">dci-ctp</a> (a DCI compliance test suite). Everything can be built from source; each repository's README has the instructions.</p>
+<p><a href="https://github.com/PostPerfection">github.com/PostPerfection →</a></p>
+</div>
+</section>
+
 </main>
 
 <footer>
 <div class="container">
-<p>&copy; 2026 PostPerfection. <a href="https://github.com/PostPerfection">GitHub</a></p>
+<p>&copy; 2026 PostPerfection &middot; <a href="https://github.com/PostPerfection">GitHub</a> &middot; GPL-3.0</p>
 </div>
 </footer>
+
 </body>
 </html>
