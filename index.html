@@ -37,6 +37,8 @@ h2 { font-size: 1.5rem; margin: 0 0 0.4rem; }
 .app:hover { background: var(--card-hover); }
 .app h3 { font-size: 1.25rem; margin-bottom: 0.15rem; }
 .app .job { color: var(--accent); font-size: 0.92rem; font-weight: 600; margin-bottom: 0.8rem; }
+.app .build { margin-bottom: 0.9rem; }
+.app .build img { height: 20px; vertical-align: middle; }
 .app ul { list-style: none; margin-bottom: 1.2rem; }
 .app li { color: var(--muted); font-size: 0.93rem; padding-left: 1.2rem; position: relative; margin-bottom: 0.35rem; }
 .app li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); }
@@ -94,6 +96,7 @@ footer a { color: var(--accent); text-decoration: none; }
 <div class="app">
 <h3>DCP Doctor</h3>
 <div class="job">Check DCPs and IMPs</div>
+<div class="build"><a href="https://github.com/PostPerfection/dcpdoctor/actions/workflows/ci.yml"><img alt="dcpdoctor build status" src="https://github.com/PostPerfection/dcpdoctor/actions/workflows/ci.yml/badge.svg?branch=master"></a></div>
 <ul>
 <li>Catch broken packages before the screening</li>
 <li>Browser check, or the desktop app for a full JPEG 2000 pass</li>
@@ -117,6 +120,7 @@ footer a { color: var(--accent); text-decoration: none; }
 <div class="app">
 <h3>DCP Wizard</h3>
 <div class="job">Make DCPs</div>
+<div class="build"><a href="https://github.com/PostPerfection/dcpwizard/actions/workflows/ci.yml"><img alt="dcpwizard build status" src="https://github.com/PostPerfection/dcpwizard/actions/workflows/ci.yml/badge.svg?branch=master"></a></div>
 <ul>
 <li>Start from ProRes, H.264/H.265, DNxHR, or DPX/TIFF/EXR sequences</li>
 <li>SMPTE and Interop, 2K and 4K, up to 60 fps at 2K, stereoscopic 3D</li>
@@ -142,6 +146,7 @@ footer a { color: var(--accent); text-decoration: none; }
 <div class="app">
 <h3>IMF Wizard</h3>
 <div class="job">Deliver to streamers</div>
+<div class="build"><a href="https://github.com/PostPerfection/imfwizard/actions/workflows/ci.yml"><img alt="imfwizard build status" src="https://github.com/PostPerfection/imfwizard/actions/workflows/ci.yml/badge.svg?branch=master"></a></div>
 <ul>
 <li>Build IMF App 2E packages with Netflix, Amazon, and cinema presets</li>
 <li>Fast JPEG 2000 encoding on the CPU with Grok, faster still with the optional commercial Grok GPU accelerator</li>
