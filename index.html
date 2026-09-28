@@ -106,7 +106,7 @@ footer a { color: var(--accent); text-decoration: none; }
 <li>Automated QC: black and frozen frames, silence, clipping</li>
 <li>Loudness per track, Leq(m) and EBU R128</li>
 <li>Compatibility checks for Dolby, Barco, Christie, GDC, IMAX servers</li>
-<li>ISDCF naming, Netflix IMF rules through Photon, DCI conformance with dci-ctp</li>
+<li>ISDCF naming, Netflix IMF rules through Photon, DCI conformance checks, tested against the DCI Compliance Test Plan cases in dci-ctp</li>
 <li>Fix a broken package, with a dry run first</li>
 <li>Diff two packages, down to a perceptual picture fingerprint</li>
 <li>QC reports you can hand to a client</li>
@@ -156,7 +156,7 @@ footer a { color: var(--accent); text-decoration: none; }
 <li>Sign the CPL and PKL</li>
 <li>Supplemental packages for partial re-deliveries, retitle without re-wrapping</li>
 <li>PSNR, SSIM and VMAF comparison, A/V sync, bitrate analytics</li>
-<li>ProRes 4444 export, version tracking and a delivery dashboard</li>
+<li>ProRes 4444 export, version tracking and a delivery log you can list, filter and export to JSON or CSV</li>
 <li>Convert an IMF package to a DCP</li>
 <li>Watch folders, REST API, Docker, Prometheus metrics</li>
 </ul>
@@ -210,7 +210,7 @@ footer a { color: var(--accent); text-decoration: none; }
 <a href="https://github.com/PostPerfection/dcpwizard/actions/workflows/ci.yml"><span>DCP Wizard</span><img alt="DCP Wizard build status" src="https://github.com/PostPerfection/dcpwizard/actions/workflows/ci.yml/badge.svg?branch=master"></a>
 <a href="https://github.com/PostPerfection/imfwizard/actions/workflows/ci.yml"><span>IMF Wizard</span><img alt="IMF Wizard build status" src="https://github.com/PostPerfection/imfwizard/actions/workflows/ci.yml/badge.svg?branch=master"></a>
 </div>
-<p>The apps are built in Rust on shared open-source libraries: <a href="https://github.com/PostPerfection/postkit">postkit</a> (encoding, packaging, QC building blocks), <a href="https://github.com/PostPerfection/asdcplib-rs">asdcplib-rs</a> (safe Rust bindings for AS-DCP/AS-02 MXF), and <a href="https://github.com/PostPerfection/dci-ctp">dci-ctp</a> (a DCI compliance test suite). Everything can be built from source; each repository's README has the instructions.</p>
+<p>The apps are built in Rust on shared open-source libraries: <a href="https://github.com/PostPerfection/postkit">postkit</a> (encoding, packaging, QC building blocks) and <a href="https://github.com/PostPerfection/asdcplib-rs">asdcplib-rs</a> (safe Rust bindings for AS-DCP/AS-02 MXF). <a href="https://github.com/PostPerfection/dci-ctp">dci-ctp</a> is a DCI Compliance Test Plan test suite that runs the dcpdoctor binary. Everything can be built from source. Each repository's README has the instructions.</p>
 <p><a href="https://github.com/PostPerfection">github.com/PostPerfection →</a></p>
 </div>
 </section>
