@@ -168,6 +168,24 @@ footer a { color: var(--accent); text-decoration: none; }
 </div>
 </div>
 
+<div class="app">
+<h3>KDM Courier</h3>
+<div class="job">Key your bookings</div>
+<ul>
+<li>Import cinemas from SMPTE ST 430-16 and ST 430-7 FLM files, or DCP Wizard's cinema list</li>
+<li>Import a DKDM as a title, then book it on screens with a start and end in each cinema's own time zone</li>
+<li>Every certificate chain is checked against ST 430-2 and ISDCF Doc 5 before a KDM is written</li>
+<li>A screen whose certificate or booking dates change is marked for reissue, and Issue covers just those screens</li>
+<li>Bookings ending in the next 3 days are marked, and an expiry view lists certificates and DKDMs that end before a booking does</li>
+<li>One ZIP per cinema, named by the 2009 KDM Naming Convention, written to a folder or emailed over SMTP</li>
+<li>An outbox of every KDM and ZIP with the SMTP result, and resend</li>
+</ul>
+<div class="actions">
+<a class="btn" href="https://github.com/PostPerfection/kdmcourier/releases/latest">Download</a>
+<a class="more" href="https://postperfection.github.io/kdmcourier/">Learn more →</a>
+</div>
+</div>
+
 </div>
 </div>
 </section>
@@ -211,6 +229,7 @@ footer a { color: var(--accent); text-decoration: none; }
 <a href="https://github.com/PostPerfection/dcpdoctor/actions/workflows/ci.yml"><span>DCP Doctor</span><img alt="DCP Doctor build status" src="https://github.com/PostPerfection/dcpdoctor/actions/workflows/ci.yml/badge.svg?branch=master"></a>
 <a href="https://github.com/PostPerfection/dcpwizard/actions/workflows/ci.yml"><span>DCP Wizard</span><img alt="DCP Wizard build status" src="https://github.com/PostPerfection/dcpwizard/actions/workflows/ci.yml/badge.svg?branch=master"></a>
 <a href="https://github.com/PostPerfection/imfwizard/actions/workflows/ci.yml"><span>IMF Wizard</span><img alt="IMF Wizard build status" src="https://github.com/PostPerfection/imfwizard/actions/workflows/ci.yml/badge.svg?branch=master"></a>
+<a href="https://github.com/PostPerfection/kdmcourier/actions/workflows/ci.yml"><span>KDM Courier</span><img alt="KDM Courier build status" src="https://github.com/PostPerfection/kdmcourier/actions/workflows/ci.yml/badge.svg?branch=main"></a>
 </div>
 <p>The apps are built in Rust on shared open-source libraries: <a href="https://github.com/PostPerfection/postkit">postkit</a> (encoding, packaging, QC building blocks) and <a href="https://github.com/PostPerfection/asdcplib-rs">asdcplib-rs</a> (safe Rust bindings for AS-DCP/AS-02 MXF). <a href="https://github.com/PostPerfection/dci-ctp">dci-ctp</a> is a DCI Compliance Test Plan test suite that runs the dcpdoctor binary. Everything can be built from source. Each repository's README has the instructions.</p>
 <p><a href="https://github.com/PostPerfection">github.com/PostPerfection →</a></p>
