@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PostPerfection: Free DCP &amp; IMF Tools</title>
-<meta name="description" content="Free, open-source desktop apps to create, validate and deliver DCPs and IMPs. Preview, encrypt, forensics, and QC. Windows, macOS, and Linux.">
+<meta name="description" content="Free, open-source desktop apps to create, validate, key, deliver and play DCPs and IMPs. Encryption and KDMs, JPEG 2000 forensics, QC, and a DCP player. Windows, macOS, and Linux.">
 <style>
 :root {
   --bg: #0d0d0d; --card: #16161d; --card-hover: #1b1b24; --text: #e8e8ee; --muted: #9a9aa8;
@@ -43,6 +43,7 @@ h2 { font-size: 1.5rem; margin: 0 0 0.4rem; }
 .app .actions { margin-top: auto; display: flex; gap: 0.7rem; align-items: center; flex-wrap: wrap; }
 .app .actions a.more { color: var(--muted); font-size: 0.92rem; text-decoration: none; }
 .app .actions a.more:hover { color: var(--accent); }
+.app .actions .note { color: var(--muted); font-size: 0.92rem; }
 .strip { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.6rem; display: flex; gap: 1.2rem; align-items: center; justify-content: space-between; flex-wrap: wrap; }
 .strip p { color: var(--muted); max-width: 58ch; }
 .strip strong { color: var(--text); }
@@ -79,7 +80,7 @@ footer a { color: var(--accent); text-decoration: none; }
 
 <section class="hero">
 <div class="container">
-<h1>Create, validate and deliver <em>DCPs and IMPs</em></h1>
+<h1>Create, validate, deliver and play <em>DCPs and IMPs</em></h1>
 <p>Free, open-source desktop apps for cinema and streaming deliveries. The kind of tools that usually cost thousands, with no dongles, no subscriptions, and no watermarks.</p>
 <div class="cta">
 <a class="btn" href="#apps">Download the apps</a>
@@ -92,7 +93,7 @@ footer a { color: var(--accent); text-decoration: none; }
 <section class="section" id="apps">
 <div class="container">
 <h2>The apps</h2>
-<p class="lead">Each one installs like any normal desktop app. Command-line versions are on the same download pages if you script your deliveries.</p>
+<p class="lead">Each one installs like any normal desktop app. DCP Doctor, DCP Wizard and IMF Wizard have command-line versions on the same download pages if you script your deliveries.</p>
 <div class="apps">
 
 <div class="app">
@@ -103,10 +104,12 @@ footer a { color: var(--accent); text-decoration: none; }
 <li>Browser check, or the desktop app for a full JPEG 2000 pass</li>
 <li>Structure, hashes, timed text, audio, HDR, encryption</li>
 <li>JPEG 2000 forensics on every frame, DCP and IMF</li>
+<li>Decrypt with a KDM and check the encrypted essence</li>
+<li>XML signatures and certificate chains checked</li>
 <li>Automated QC: black and frozen frames, silence, clipping</li>
 <li>Loudness per track, Leq(m) and EBU R128</li>
 <li>Compatibility checks for Dolby, Barco, Christie, GDC, IMAX servers</li>
-<li>ISDCF naming, Netflix IMF rules through Photon, DCI conformance checks, tested against the DCI Compliance Test Plan cases in dci-ctp</li>
+<li>ISDCF naming, Netflix IMF delivery rules and a Photon pass, DCI conformance checks, tested against the DCI Compliance Test Plan cases in dci-ctp</li>
 <li>Fix a broken package, with a dry run first</li>
 <li>Diff two packages, down to a perceptual picture fingerprint</li>
 <li>QC reports you can hand to a client</li>
@@ -127,15 +130,17 @@ footer a { color: var(--accent); text-decoration: none; }
 <li>Fast JPEG 2000 encoding on the CPU with Grok, faster still with the optional commercial Grok GPU accelerator</li>
 <li>HDR DCPs under the DCI HDR Addendum, from HDR10, HLG or Dolby Vision masters</li>
 <li>Subtitles and closed captions from SRT, ASS, PAC, and more</li>
-<li>Encrypt every track, then a KDM suite: cinema database, validity templates, emailed per-cinema KDMs, vendor certificate fetch</li>
+<li>Encrypt every track, then a KDM suite: cinema database, validity templates, emailed per-cinema KDMs, KDMs from a DKDM</li>
 <li>Version files against an OV, multi-composition packages, assemble and combine DCPs</li>
+<li>Rebuild an existing DCP as a new OV with a new title, new ratings or added reels</li>
 <li>Timeline conform from EDL, FCP7 XML or FCPX to a multi-reel DCP</li>
-<li>CPL markers, FFOC and LFOC by default, all ten ST 429-10 markers from the build panel or the CLI</li>
+<li>CPL markers, FFOC and LFOC by default, any of the ten ST 429-7 markers on a single-reel DCP from the build panel or the CLI</li>
 <li>Trailer packaging with rating cards and countdown leaders</li>
 <li>Signing, decryption, visible watermarks, export back to ProRes or H.264</li>
 <li>ISDCF naming, accessibility checks (CVAA, EAA, AODA, Ofcom), loudness</li>
+<li>Measure the loudness of the sound the package will carry, and set the gain to reach a target</li>
 <li>Pre-build check, preview with QC overlays, then a QC report</li>
-<li>Verified cinema-drive copies, or upload to a TMS</li>
+<li>Verified cinema-drive copies</li>
 <li>Watch folders, REST API, Docker, Prometheus metrics</li>
 </ul>
 <div class="actions">
@@ -152,14 +157,15 @@ footer a { color: var(--accent); text-decoration: none; }
 <li>Build IMF App 2E packages with Netflix, Disney+, HBO Max, broadcast, archival and DCI cinema presets</li>
 <li>Fast JPEG 2000 encoding on the CPU with Grok, faster still with the optional commercial Grok GPU accelerator</li>
 <li>Crop, trim, map audio, and burn subtitles on the way in</li>
-<li>HDR10, HLG and PQ P3-D65 masters, Dolby Vision and HDR10+ metadata tools, Dolby Atmos ADM import</li>
-<li>Audio description tracks with automatic ducking</li>
+<li>Subtitles from SRT, SCC, ASS, FCPXML or MKS converted to IMSC</li>
+<li>PQ BT.2020, PQ P3-D65 and HLG pictures, Dolby Vision and HDR10+ metadata tools, Dolby Atmos IAB tracks and ADM import</li>
+<li>Audio description mixed into the main sound with ducking</li>
 <li>Validate with Photon, XSD schemas and structure checks before delivery</li>
 <li>Sign the CPL and PKL</li>
-<li>Supplemental packages for partial re-deliveries, retitle without re-wrapping</li>
+<li>Supplemental packages for partial re-deliveries, and a CPL title and annotation editor</li>
 <li>PSNR, SSIM and VMAF comparison, A/V sync, bitrate analytics</li>
 <li>ProRes 4444 export, version tracking and a delivery log you can list, filter and export to JSON or CSV</li>
-<li>Convert an IMF package to a DCP</li>
+<li>Convert a single-composition Rec.709 IMF package to a DCP</li>
 <li>Watch folders, REST API, Docker, Prometheus metrics</li>
 </ul>
 <div class="actions">
@@ -183,6 +189,27 @@ footer a { color: var(--accent); text-decoration: none; }
 <div class="actions">
 <a class="btn" href="https://github.com/PostPerfection/kdmcourier/releases/latest">Download</a>
 <a class="more" href="https://postperfection.github.io/kdmcourier/">Learn more →</a>
+</div>
+</div>
+
+<div class="app">
+<h3>DCP Screen</h3>
+<div class="job">Play DCPs and IMPs</div>
+<ul>
+<li>A library of the DCPs and IMF packages in your folders</li>
+<li>Encrypted compositions play with the KDM from the store that is valid now</li>
+<li>Playlists with intermissions, start times, and in and out points, with no black frame between compositions</li>
+<li>SMPTE and Interop subtitles and closed captions</li>
+<li>Version files and supplemental IMPs play with their original version from the library</li>
+<li>3D as one eye, side by side, or top and bottom</li>
+<li>A player window with mouse-over controls, full screen on the display you pick</li>
+<li>Verify any package with DCP Doctor</li>
+<li>A settings lock for the booth, and an HDCP check on Linux</li>
+</ul>
+<div class="actions">
+<a class="btn" href="https://github.com/PostPerfection/dcpscreen">Source</a>
+<a class="more" href="https://postperfection.github.io/dcpscreen/">Learn more →</a>
+<span class="note">No release yet</span>
 </div>
 </div>
 
@@ -230,8 +257,9 @@ footer a { color: var(--accent); text-decoration: none; }
 <a href="https://github.com/PostPerfection/dcpwizard/actions/workflows/ci.yml"><span>DCP Wizard</span><img alt="DCP Wizard build status" src="https://github.com/PostPerfection/dcpwizard/actions/workflows/ci.yml/badge.svg?branch=master"></a>
 <a href="https://github.com/PostPerfection/imfwizard/actions/workflows/ci.yml"><span>IMF Wizard</span><img alt="IMF Wizard build status" src="https://github.com/PostPerfection/imfwizard/actions/workflows/ci.yml/badge.svg?branch=master"></a>
 <a href="https://github.com/PostPerfection/kdmcourier/actions/workflows/ci.yml"><span>KDM Courier</span><img alt="KDM Courier build status" src="https://github.com/PostPerfection/kdmcourier/actions/workflows/ci.yml/badge.svg?branch=main"></a>
+<a href="https://github.com/PostPerfection/dcpscreen/actions/workflows/ci.yml"><span>DCP Screen</span><img alt="DCP Screen build status" src="https://github.com/PostPerfection/dcpscreen/actions/workflows/ci.yml/badge.svg?branch=master"></a>
 </div>
-<p>The apps are built in Rust on shared open-source libraries: <a href="https://github.com/PostPerfection/postkit">postkit</a> (encoding, packaging, QC building blocks) and <a href="https://github.com/PostPerfection/asdcplib-rs">asdcplib-rs</a> (safe Rust bindings for AS-DCP/AS-02 MXF). <a href="https://github.com/PostPerfection/dci-ctp">dci-ctp</a> is a DCI Compliance Test Plan test suite that runs the dcpdoctor binary. Everything can be built from source. Each repository's README has the instructions.</p>
+<p>The apps are built in Rust on shared open-source libraries: <a href="https://github.com/PostPerfection/postkit">postkit</a> (encoding, packaging, QC building blocks), <a href="https://github.com/PostPerfection/guikit">guikit</a> (the desktop apps' shared preview player and panels) and <a href="https://github.com/PostPerfection/asdcplib-rs">asdcplib-rs</a> (safe Rust bindings for AS-DCP/AS-02 MXF). <a href="https://github.com/PostPerfection/dci-ctp">dci-ctp</a> is a DCI Compliance Test Plan test suite that runs the dcpdoctor binary. Everything can be built from source. Each repository's README has the instructions.</p>
 <p><a href="https://github.com/PostPerfection">github.com/PostPerfection →</a></p>
 </div>
 </section>
